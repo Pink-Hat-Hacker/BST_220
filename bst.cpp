@@ -13,10 +13,10 @@ using namespace std;
 
 
 bst::bst(){
-	root=NULL;
+	root = NULL;
 }
 bst::bst(string f, string l, int n, string j){
-	root = new bstNode( f,l, n, j);
+	root = new bstNode(f, l, n, j);
 }
 bool bst::insert(string f, string l, int n, string j){
 	//TODO: bst::insert() bst.cpp
@@ -30,25 +30,62 @@ bool bst::insert(string f, string l, int n, string j){
 }
 
 bstNode *bst::find(string l, string f){
-
+	//TODO: *bst::find()
+	/*
+	 * finds whether a student with the last name l and first
+	 * name f is in the tree is in the tree, and, if it is, returns the node holding that
+	 * student. Otherwise it returns NULL.
+	 */
 }
+
 void bst::printTreeIO(){
-
+	if (root == NULL ) {
+		cout << "Empty Tree" << endl;
+	}else {
+		cout << endl<<"Printing In Order:" <<endl;
+		printTreeIO(root);
+	}
 }
+
 void bst::printTreeIO(bstNode *n){
-
+	//TODO: bst::printTreeIO
+	/*
+	 * recursive function that prints out the data in the tree
+	 * in order
+	 */
 }
+
 void bst::printTreePre(){
-
+	if (root == NULL ) {
+		cout << "Empty Tree" << endl;
+	}else {
+		cout << endl<<"Printing PreOrder:" <<endl;
+		printTreePre(root);
+	}
 }
+
 void bst::printTreePre(bstNode *n){
-
+	//TODO: printTreePre()
+	/*
+	 * a recursive function that prints out the datain the
+	 * tree in pre-order
+	 */
 }
-void bst::printTreePost(){
 
+void bst::printTreePost(){
+	if (root == NULL ) {
+		cout << "Empty Tree" << endl;
+	}else {
+		cout << endl<<"Printing PostOrder:" <<endl;
+		printTreePost(root);
+	}
 }
 void bst::printTreePost(bstNode *n){
-
+	//TODO: printTreePost()
+	/*
+	 * a recursive function that prints out the data in
+	 * the tree in post-order
+	 */
 }
 
 void bst::clearTree(){
