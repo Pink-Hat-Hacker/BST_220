@@ -15,9 +15,11 @@ using namespace std;
 bst::bst(){
 	root = NULL;
 }
+
 bst::bst(string f, string l, int n, string j){
 	root = new bstNode(f, l, n, j);
 }
+
 bool bst::insert(string f, string l, int n, string j){
 	//TODO: bst::insert() bst.cpp
 	/*
@@ -80,6 +82,7 @@ void bst::printTreePost(){
 		printTreePost(root);
 	}
 }
+
 void bst::printTreePost(bstNode *n){
 	//TODO: printTreePost()
 	/*
@@ -101,19 +104,20 @@ void bst::clearTree(){
 
 void bst::clearTree(bstNode *tmp){
 	if (tmp == NULL) {
-	return;
-	}
-	else {
-	clearTree(tmp->left);
-	clearTree(tmp->right);
-	tmp->printNode();
-	delete(tmp);
+		return;
+	}else {
+		clearTree(tmp->left);
+		clearTree(tmp->right);
+		tmp->printNode();
+		delete(tmp);
 	}
 
 }
+
 bstNode *bst::removeNoKids(bstNode *tmp){
 
 }
+
 bstNode *bst::removeOneKid(bstNode *tmp, bool leftFlag){
 
 }
