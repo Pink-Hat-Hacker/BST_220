@@ -29,6 +29,15 @@ bool bst::insert(string f, string l, int n, string j){
 	 * if a new node is created and the data is inserted into the tree successfully, and
 	 * false otherwise.
 	 */
+
+	bstNode *temp1 = new bstNode(f, l, n, j);
+	bstNode *temp2 = root;
+
+	while(temp2 != NULL){
+		if((temp1->student->last) > (temp2->student->last)){
+
+		}
+	}
 }
 
 bstNode *bst::find(string l, string f){
@@ -72,6 +81,13 @@ void bst::printTreePre(bstNode *n){
 	 * a recursive function that prints out the datain the
 	 * tree in pre-order
 	 */
+	if(n == NULL){
+		return;
+	}else{
+		n->printNode();
+		printTreePre(n->left);
+		printTreePre(n->right);
+	}
 }
 
 void bst::printTreePost(){
@@ -93,12 +109,11 @@ void bst::printTreePost(bstNode *n){
 
 void bst::clearTree(){
 	if (root == NULL) {
-	cout << "Tree already empty" << endl;
-	}
-	else {
-	cout << endl << "Clearing Tree:" << endl;
-	clearTree(root);
-	root = NULL;
+		cout << "Tree already empty" << endl;
+	}else {
+		cout << endl << "Clearing Tree:" << endl;
+		clearTree(root);
+		root = NULL;
 	}
 }
 
