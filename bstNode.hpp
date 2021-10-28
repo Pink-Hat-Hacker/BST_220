@@ -16,8 +16,9 @@
 using namespace std;
 
 class bstNode{
-	friend class Student;
+
 	friend class bst;
+	friend class TreeInterface;
 	bstNode *left;
 	bstNode *right;
 	bstNode *parent;

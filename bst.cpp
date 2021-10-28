@@ -7,6 +7,7 @@
 
 #include "bst.hpp"
 #include "bstNode.hpp"
+#include "Student.hpp"
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
@@ -30,14 +31,57 @@ bool bst::insert(string f, string l, int n, string j){
 	 * false otherwise.
 	 */
 
-	bstNode *temp1 = new bstNode(f, l, n, j);
+	bstNode *temp = new bstNode(f, l, n, j);
 	bstNode *temp2 = root;
+	if(temp2 == NULL){
+		root = temp;
+		//setHeight()
+		return true;
+	}else{
 
-	while(temp2 != NULL){
-		if((temp1->student->last) > (temp2->student->last)){
-
+		while(temp2 != NULL){
+			if((temp->student->last) < (temp2->student->last)){
+				if(temp2->left == NULL){
+					temp2->left = temp;
+					temp->parent = temp2;
+					//setHieght()
+					return true;
+				}
+				temp2 = temp2->left;
+			}else if((temp->student->last) > (temp2->student->last)){
+				if(temp2->right == NULL){
+					temp2->right = temp;
+					temp->parent = temp2;
+					//setHeight()
+					return true;
+				}
+				temp2 = temp2->right;
+			}else if((temp->student->last) == (temp2->student->last)){
+				if((temp->student->first) == (temp2->student->first)){
+					return false;
+				}else{
+					if((temp->student->first) < (temp2->student->first)){
+						if(temp2->left == NULL){
+								temp2->left = temp;
+								temp->parent = temp2;
+								//setHieght()
+								return true;
+							}
+							temp2 = temp2->left;
+					}else if((temp->student->last) > (temp2->student->last)){
+						if(temp2->right == NULL){
+							temp2->right = temp;
+							temp->parent = temp2;
+							//setHeight()
+							return true;
+						}
+						temp2 = temp2->right;
+					}
+				}
+			}
 		}
 	}
+	return true;
 }
 
 bstNode *bst::find(string l, string f){
@@ -105,6 +149,13 @@ void bst::printTreePost(bstNode *n){
 	 * a recursive function that prints out the data in
 	 * the tree in post-order
 	 */
+	if(n == NULL){
+		return;
+	}else{
+		printTreePre(n->left);
+		printTreePre(n->right);
+		n->printNode();
+	}
 }
 
 void bst::clearTree(){

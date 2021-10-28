@@ -47,6 +47,7 @@ int main() {
 	cout << endl;
 	cout << endl << "***Printing IO ***" << endl;
 	tree->tree->printTreeIO();
+	//tree->tree->printTreePre();
 
 	cout << endl << endl<<"Inserting Nelly Nobody: " << endl;
 	tree->tree->insert("Nobody","Nelly", 761, "We all Albert Einstein was a genius... but his brother Frank was a monster!");

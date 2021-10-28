@@ -26,7 +26,7 @@ bstNode::bstNode(string f, string l, int n, string j){
 	right = NULL;
 	parent = NULL;
 	height = 1;
-	student = NULL;
+	//student = NULL;
 }
 
 void bstNode::printNode(){
