@@ -108,6 +108,14 @@ void bst::printTreeIO(bstNode *n){
 	 * recursive function that prints out the data in the tree
 	 * in order
 	 */
+	if(n == NULL){
+			return;
+	}else{
+		//if im understanding this right go left print stack, then go right and print stack
+		printTreePre(n->left);
+		n->printNode();
+		printTreePre(n->right);
+	}
 }
 
 void bst::printTreePre(){
@@ -191,5 +199,20 @@ bstNode *bst::remove(string f, string l){
 
 }
 void bst::setHeight(bstNode *n){
-
+	while(n != root){
+		n = n->parent;
+		if((n->right != NULL) && (n->left != NULL)){
+			if((n->right->height < n->left->height)){
+				n->height = n->left->height+1;
+			}else{
+				n->height = n->right->height+1;
+			}
+		}else if((n->right == NULL) && (n->left != NULL)){
+			n->height = n->left->height + 1;
+		}else if((n->right != NULL) && (n->left == NULL)){
+			n->height = n->right->height + 1;
+		}else if((n->right == NULL) && (n->left == NULL)){
+			n->height = 1;
+		}
+	}
 }
