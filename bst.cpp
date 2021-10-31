@@ -91,6 +91,20 @@ bstNode *bst::find(string l, string f){
 	 * name f is in the tree is in the tree, and, if it is, returns the node holding that
 	 * student. Otherwise it returns NULL.
 	 */
+	bstNode *current = root;
+	//bstNode *temp = current;
+	while(current != NULL){
+		if((current->student->first == f) && (current->student->last)){
+			return current;
+		}else{
+			if(current->left != NULL){
+				current = current->left;
+			}else if(current->right != NULL){
+				current = current->right;
+			}
+		}
+	}
+	return NULL;
 }
 
 void bst::printTreeIO(){
@@ -189,7 +203,19 @@ void bst::clearTree(bstNode *tmp){
 }
 
 bstNode *bst::removeNoKids(bstNode *tmp){
-
+    if(tmp->parent->student->last == tmp->student->last){
+    	if(tmp->student->first > tmp->parent->student->first){
+				tmp->parent->right = NULL;
+		 }else{
+			 tmp->parent->left = NULL;
+		 }
+    }else if(tmp->student->last > tmp->parent->student->last){
+    	tmp->parent->right = NULL;
+    }else{
+    	tmp->parent->left = NULL;
+    }
+    setHeight(tmp->parent);
+    return tmp;
 }
 
 bstNode *bst::removeOneKid(bstNode *tmp, bool leftFlag){
