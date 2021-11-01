@@ -31,56 +31,60 @@ bool bst::insert(string f, string l, int n, string j){
 	 * false otherwise.
 	 */
 
-	bstNode *temp = new bstNode(f, l, n, j);
+	bstNode *insert = new bstNode(f, l, n, j);
 	bstNode *temp2 = root;
 	if(temp2 == NULL){
-		root = temp;
-		//setHeight()
+		root = insert;
+		setHeight(insert);
 		return true;
 	}else{
 		while(temp2 != NULL){
-			if((temp->student->last) < (temp2->student->last)){
+			if((insert->student->last) < (temp2->student->last)){
 				if(temp2->left == NULL){
-					temp2->left = temp;
-					temp->parent = temp2;
-					setHeight(temp);
+					temp2->left = insert;
+					insert->parent = temp2;
+					setHeight(insert);
 					return true;
+				}else{
+					temp2 = temp2->left;
 				}
-				temp2 = temp2->left;
-			}else if((temp->student->last) > (temp2->student->last)){
+			}else if((insert->student->last) > (temp2->student->last)){
 				if(temp2->right == NULL){
-					temp2->right = temp;
-					temp->parent = temp2;
-					setHeight(temp);
+					temp2->right = insert;
+					insert->parent = temp2;
+					setHeight(insert);
 					return true;
+				}else{
+					temp2 = temp2->right;
 				}
-				temp2 = temp2->right;
-			}else if((temp->student->last) == (temp2->student->last)){
-				if((temp->student->first) == (temp2->student->first)){
+			}else if((insert->student->last) == (temp2->student->last)){
+				if((insert->student->first) == (temp2->student->first)){
 					return false;
 				}else{
-					if((temp->student->first) < (temp2->student->first)){
+					if((insert->student->first) < (temp2->student->first)){
 						if(temp2->left == NULL){
-								temp2->left = temp;
-								temp->parent = temp2;
-								setHeight(temp);
+								temp2->left = insert;
+								insert->parent = temp2;
+								setHeight(insert);
 								return true;
+							}else{
+								temp2 = temp2->left;
 							}
-							temp2 = temp2->left;
-					}else if((temp->student->last) > (temp2->student->last)){
+					}else if((insert->student->last) > (temp2->student->last)){
 						if(temp2->right == NULL){
-							temp2->right = temp;
-							temp->parent = temp2;
-							setHeight(temp);
+							temp2->right = insert;
+							insert->parent = temp2;
+							setHeight(insert);
 							return true;
+						}else{
+							temp2 = temp2->right;
 						}
-						temp2 = temp2->right;
 					}
 				}
 			}
 		}
 	}
-	return true;
+	return false;
 }
 
 bstNode *bst::find(string l, string f){
