@@ -38,13 +38,12 @@ bool bst::insert(string f, string l, int n, string j){
 		//setHeight()
 		return true;
 	}else{
-
 		while(temp2 != NULL){
 			if((temp->student->last) < (temp2->student->last)){
 				if(temp2->left == NULL){
 					temp2->left = temp;
 					temp->parent = temp2;
-					//setHieght()
+					setHeight(temp);
 					return true;
 				}
 				temp2 = temp2->left;
@@ -52,7 +51,7 @@ bool bst::insert(string f, string l, int n, string j){
 				if(temp2->right == NULL){
 					temp2->right = temp;
 					temp->parent = temp2;
-					//setHeight()
+					setHeight(temp);
 					return true;
 				}
 				temp2 = temp2->right;
@@ -64,7 +63,7 @@ bool bst::insert(string f, string l, int n, string j){
 						if(temp2->left == NULL){
 								temp2->left = temp;
 								temp->parent = temp2;
-								//setHieght()
+								setHeight(temp);
 								return true;
 							}
 							temp2 = temp2->left;
@@ -72,7 +71,7 @@ bool bst::insert(string f, string l, int n, string j){
 						if(temp2->right == NULL){
 							temp2->right = temp;
 							temp->parent = temp2;
-							//setHeight()
+							setHeight(temp);
 							return true;
 						}
 						temp2 = temp2->right;
@@ -93,18 +92,40 @@ bstNode *bst::find(string l, string f){
 	 */
 	bstNode *current = root;
 	//bstNode *temp = current;
-	while(current != NULL){
-		if((current->student->first == f) && (current->student->last)){
-			return current;
-		}else{
-			if(current->left != NULL){
-				current = current->left;
-			}else if(current->right != NULL){
+	if(current == NULL){
+		return NULL;
+	}else{
+		while(current != NULL){
+			if(current->student->last < l){
 				current = current->right;
+			}else if(current->student->last > l){
+				current = current->left;
+			}else{
+				return NULL;
 			}
 		}
+		if((current->student->first == f) && (current->student->last == l)){
+			return current;
+		}else if(current->student->last == l && current->student->first != f){
+			if(current->student->first < f){
+				current = current->right;
+				if(current->student->last == l && current->student->first == f){
+					return current;
+				}
+			}else if(current->student->first == f){
+				current = current->left;
+				if(current->student->last == l && current->student->first == f){
+					return current;
+				}
+			}
+		//				if(current->left != NULL){
+		//					current = current->left;
+		//				}else if(current->right != NULL){
+		//					current = current->right;
+		//				}
+		}
 	}
-	return NULL;
+	//return NULL;
 }
 
 void bst::printTreeIO(){
@@ -203,6 +224,9 @@ void bst::clearTree(bstNode *tmp){
 }
 
 bstNode *bst::removeNoKids(bstNode *tmp){
+	/*
+	 * for removing a node with no children
+	 */
     if(tmp->parent->student->last == tmp->student->last){
     	if(tmp->student->first > tmp->parent->student->first){
 				tmp->parent->right = NULL;
@@ -219,11 +243,58 @@ bstNode *bst::removeNoKids(bstNode *tmp){
 }
 
 bstNode *bst::removeOneKid(bstNode *tmp, bool leftFlag){
-
+	/*
+	 * for removing a node with one child, with the leftFlag
+	 * indicating whether the node’s child is either the left child
+	 * or the right child.
+	 */
+	if(tmp->parent->left == tmp){
+		if(leftFlag == true){
+			tmp->parent->left = tmp->left;
+			tmp->left->parent = tmp->parent;
+		}else{
+			tmp->parent->left = tmp->right;
+			tmp->right->parent = tmp->parent;
+		}
+		bstNode *current = tmp;
+		while(current->left != NULL){
+			current = current->left;
+		}
+		setHeight(current);
+	}else{
+		if(leftFlag == true){
+			tmp->parent->right = tmp->left;
+			tmp->left->parent = tmp->parent;
+		}else{
+			tmp->parent->right = tmp->right;
+			tmp->right->parent = tmp->parent;
+		}
+		bstNode *current = tmp;
+		while(current->right != NULL){
+			current = current->right;
+		}
+		setHeight(current);
+	}
+	return tmp;
 }
+
 bstNode *bst::remove(string f, string l){
+	/*
+	 * this method removes a node from the tree, and
+	 * returns that node. There are 3 cases when you remove a node: either the node being
+	 * removed has no children (left or right), in which case this method calls the method
+	 * removeNoKids, the node you are removing has only one child, in which case the method
+	 * calls removeOneKid (with a Boolean flag set to true if there is a left child, and
+	 * false if there is a right child), or the node being removed has both a left and a
+	 * right child, in which you replace the node being removed with the appropriate
+	 * replacement child, and then remove the node used as a replacement by calling either
+	 * removeNoKids or removeOneKid, depending on which is appropriate.
+	 */
+
+
 
 }
+
 void bst::setHeight(bstNode *n){
 	while(n != root){
 		n = n->parent;
