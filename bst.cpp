@@ -294,41 +294,38 @@ bstNode *bst::remove(string f, string l){
 	 * replacement child, and then remove the node used as a replacement by calling either
 	 * removeNoKids or removeOneKid, depending on which is appropriate.
 	 */
-	bstNode *current = find(f,l);
-	if(current->left==NULL && current->right==NULL){
+	cout << "getting here" << endl;
+	bstNode *current = find(l, f);
+	cout << "under find" << endl;
+	//first case - no children
+	if(current->left == NULL && current->right == NULL){
+		cout << "first case" << endl;
 		return removeNoKids(current);
-		//return current;
-	}else if((current->left != NULL && current->right == NULL) || (current->left == NULL && current->right != NULL)){
-		if(current->left == NULL){
-			return removeOneKid(current, false);
-		}else if(current->right == NULL){
-			return removeOneKid(current, true);
-		}
-//removeOneKid(current, false);
-		//return current;
+	//second case -
+	}else if(current->left != NULL && current->right == NULL){
+		cout << "second case" << endl;
+		return removeOneKid(current, true);
+	}else if(current->left == NULL && current->right != NULL){
+		return removeOneKid(current, false);
+	//third case - has two children
 	}else if(current->left != NULL && current->right != NULL){
-		bstNode *temp=current->right;
-		bstNode *copy=current;
-		//int count=0;
-		while(temp != NULL){
-			temp=temp->left;
-			//count++;
-			if(temp->left == NULL){
-				removeNoKids(temp);
-			}
+		cout << "third case" << endl;
+		//find the rightmost
+		bstNode *temp = current;
+		while(temp->right != NULL){
+				temp = temp->right;
 		}
-		if(temp->right!=NULL){
-			removeOneKid(temp,0);
+		if(temp->left == NULL && temp->right == NULL){
+			removeNoKids(temp);
+		}else if(temp->left == NULL && temp->right != NULL){
+			//right
+			removeOneKid(temp, false);
+		}else if(temp->left != NULL && temp->right == NULL){
+			//left
+			removeOneKid(temp, true);
 		}
-		temp->parent->left=NULL;
-		current=temp;
-		current->parent=copy->parent;
-		current->left=copy->left;
-		current->right=copy->right;
-		setHeight(current);
-		return current;
+
 	}
-	return NULL;
 }
 
 void bst::setHeight(bstNode *n){
