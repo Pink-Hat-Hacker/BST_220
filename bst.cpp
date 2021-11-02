@@ -294,9 +294,41 @@ bstNode *bst::remove(string f, string l){
 	 * replacement child, and then remove the node used as a replacement by calling either
 	 * removeNoKids or removeOneKid, depending on which is appropriate.
 	 */
-
-
-
+	bstNode *current = find(f,l);
+	if(current->left==NULL && current->right==NULL){
+		return removeNoKids(current);
+		//return current;
+	}else if((current->left != NULL && current->right == NULL) || (current->left == NULL && current->right != NULL)){
+		if(current->left == NULL){
+			return removeOneKid(current, false);
+		}else if(current->right == NULL){
+			return removeOneKid(current, true);
+		}
+//removeOneKid(current, false);
+		//return current;
+	}else if(current->left != NULL && current->right != NULL){
+		bstNode *temp=current->right;
+		bstNode *copy=current;
+		//int count=0;
+		while(temp != NULL){
+			temp=temp->left;
+			//count++;
+			if(temp->left == NULL){
+				removeNoKids(temp);
+			}
+		}
+		if(temp->right!=NULL){
+			removeOneKid(temp,0);
+		}
+		temp->parent->left=NULL;
+		current=temp;
+		current->parent=copy->parent;
+		current->left=copy->left;
+		current->right=copy->right;
+		setHeight(current);
+		return current;
+	}
+	return NULL;
 }
 
 void bst::setHeight(bstNode *n){
