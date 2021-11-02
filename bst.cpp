@@ -94,23 +94,33 @@ bstNode *bst::find(string l, string f){
 	 * name f is in the tree is in the tree, and, if it is, returns the node holding that
 	 * student. Otherwise it returns NULL.
 	 */
+
+	//this is me
 	bstNode *current = root;
 	//bstNode *temp = current;
 	if(current == NULL){
+		cout << "current is NULL" << endl;
 		return NULL;
 	}else{
-		while(current != NULL){
+		while(current->student->last != l){
+			cout << "in top while loop" << endl;
 			if(current->student->last < l){
+				cout << "if current->last < l" << endl;
 				current = current->right;
 			}else if(current->student->last > l){
+				cout << "if current->last > l" << endl;
 				current = current->left;
 			}else{
 				return NULL;
 			}
+			cout << "bottom while loop" << endl;
 		}
 		if((current->student->first == f) && (current->student->last == l)){
+			cout << "if f and l found" << endl;
+			cout << current->student->first << " " << current->student->last << endl;
 			return current;
 		}else if(current->student->last == l && current->student->first != f){
+			cout << " == l but != f" << endl;
 			if(current->student->first < f){
 				current = current->right;
 				if(current->student->last == l && current->student->first == f){
@@ -129,7 +139,7 @@ bstNode *bst::find(string l, string f){
 		//				}
 		}
 	}
-	//return NULL;
+	return NULL;
 }
 
 void bst::printTreeIO(){
