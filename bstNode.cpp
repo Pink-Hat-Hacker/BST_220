@@ -37,7 +37,6 @@ void bstNode::printNode(){
 
 bstNode::~bstNode(){
 	//TODO: Destructor
-	cout << "Delete " << student->first<<" "<<student->last << endl;
-
+	delete student;
 }
 

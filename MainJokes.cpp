@@ -100,8 +100,49 @@ int main() {
 /*****And now for the big tree!!!  Part 7 *************/
 //	StudentTreeInfo *studtree = new StudentTreeInfo("StudentAnswers.txt");
 //
-	//	cout <<"************************************" << endl;
-	//TreeInterface *joketree = new TreeInterface("Jokes.txt");
-	//joketree->Interface();
+	cout <<"************************************ HERE" << endl;
+	TreeInterface *joketree = new TreeInterface("Jokes2.txt");
+	joketree->Interface();
+	//cout << "after interface"<<endl;
+
+//	cout << "Testing Find" << cout << endl;
+//
+//	cout << "Find: Emma Szympruch"<< endl;
+//	joketree->tree->find("Szympruch","Emma");
+//	cout << "Find: Zoe Valladares" << endl;
+//	joketree->tree->find("Valladares","Zoe");
+//	cout << "Find: Debra Yarrington" << endl;
+//	joketree->tree->find("Yarrington","Debra");
+//	cout << "Find: Penelope" << endl;
+//	joketree->tree->find("Poltergeist","Penelope");
+//
+//	cout << "*************************************" << endl;
+//	cout << "Testing Remove:" << endl;
+//
+//	cout << "Remove: Gary Grotesque" << endl;
+//	joketree->tree->remove("Grotesque","Gary");
+//	joketree->tree->printTreeIO();
+//	cout << endl<<endl<<"************************************" << endl;
+//	cout << "Find: Griselda" << endl;
+//	joketree->tree->remove("Grotesque","Griselda");
+//	joketree->tree->printTreeIO();
+//
+//	cout << endl<<endl<<"************************************" << endl;
+//	cout << "*************************************" << endl;
+//
+//	cout << "Testing Insert:" << endl;
+//
+//	cout << "Insert: Gary Grotesque"<< endl;
+//	joketree->tree->insert("Grotesque","Gary", 426, "Programming is like writing a book... except when you forget a semicolon on line 126 the whole thing makes no sense.");
+//	cout << "Find: Gary Grotesque" << endl;
+//	joketree->tree->find("Grotesque","Gary");
+//	cout << "Find: Griselda Grotesque" << endl;
+//	joketree->tree->find("Grotesque","Griselda");
+//
+//	cout << "*************************************" << endl;
+//	cout << "Finding Students" << endl;
+//	cout << "Find: Craig Barber" << endl;
+//	joketree->tree->find("Barber","Craig");
+
 	return 0;
 }

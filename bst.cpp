@@ -22,6 +22,7 @@ bst::bst(string f, string l, int n, string j){
 }
 
 bool bst::insert(string f, string l, int n, string j){
+	//cout << "inserting " << endl;
 	//TODO: bst::insert() bst.cpp
 	/*
 	 * this method takes as input parameters all
@@ -39,6 +40,7 @@ bool bst::insert(string f, string l, int n, string j){
 		return true;
 	}else{
 		while(temp2 != NULL){
+			//cout << "Now here" << endl;
 			if((insert->student->last) < (temp2->student->last)){
 				if(temp2->left == NULL){
 					temp2->left = insert;
@@ -61,6 +63,7 @@ bool bst::insert(string f, string l, int n, string j){
 				if((insert->student->first) == (temp2->student->first)){
 					return false;
 				}else{
+					//cout << "Last names the same" << endl;
 					if((insert->student->first) < (temp2->student->first)){
 						if(temp2->left == NULL){
 								temp2->left = insert;
@@ -70,7 +73,7 @@ bool bst::insert(string f, string l, int n, string j){
 							}else{
 								temp2 = temp2->left;
 							}
-					}else if((insert->student->last) > (temp2->student->last)){
+					}else if((insert->student->first) > (temp2->student->first)){
 						if(temp2->right == NULL){
 							temp2->right = insert;
 							insert->parent = temp2;
@@ -80,6 +83,7 @@ bool bst::insert(string f, string l, int n, string j){
 							temp2 = temp2->right;
 						}
 					}
+					else { return false; }
 				}
 			}
 		}
@@ -107,13 +111,13 @@ bstNode *bst::find(string l, string f){
 				current = current->left;
 			}else {
 				if (current == NULL) {
-					cout << "first null check" << endl;
+					//cout << "first null check" << endl;
 					return NULL;
 				}else {
 					if((current->student->first == f) && (current->student->last == l)){
-						cout << "test" << endl;
+						//cout << "test" << endl;
 						current->printNode();
-						cout << "test" << endl;
+						//cout << "test" << endl;
 						return current;
 					}else if(current->student->last == l && current->student->first != f){
 						if(current->student->first < f){
@@ -143,7 +147,7 @@ bstNode *bst::find(string l, string f){
 			}
 		}
 	}
-	cout << current<< endl;
+	//cout << current<< endl;
 	return current;
 }
 
@@ -325,23 +329,31 @@ bstNode *bst::remove(string l, string f){
 		return removeOneKid(current, false);
 	//third case - has two children
 	}else if(current->left != NULL && current->right != NULL){
-		//cout << "third case" << endl;
-		//find the rightmost
-		bstNode *temp = current;
+
+		bstNode *temp = current->left;
 		while(temp->right != NULL){
 				temp = temp->right;
 		}
+		cout << "hello" << endl;
+		cout << temp->student->first << endl;
 		if(temp->left == NULL && temp->right == NULL){
 			removeNoKids(temp);
-		}else if(temp->left == NULL && temp->right != NULL){
-			//right
-			removeOneKid(temp, false);
-		}else if(temp->left != NULL && temp->right == NULL){
-			//left
+		}
+//		else if(temp->left == NULL && temp->right != NULL){
+//
+//			removeOneKid(temp, false);
+//		}
+		else if(temp->left != NULL && temp->right == NULL){
 			removeOneKid(temp, true);
 		}
+		bstNode *copy=current;
+		current->student=temp->student;
+		current->parent=copy->parent;
+		current->right=copy->right;
+		current->left=copy->left;
 
 	}
+	return NULL;
 }
 
 void bst::setHeight(bstNode *n){
