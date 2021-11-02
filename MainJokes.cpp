@@ -86,7 +86,6 @@ int main() {
 	tree->tree->printTreeIO();
 	cout << endl<<endl<<"************************************" << endl;
 
-
 	/******Part 5 now testing the removing part *******/
 	cout << "Ready to Delete?"<< endl;
 	string ans;
