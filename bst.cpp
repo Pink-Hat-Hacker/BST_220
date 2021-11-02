@@ -107,29 +107,32 @@ bstNode *bst::find(string l, string f){
 				current = current->left;
 			}else {
 				if (current == NULL) {
+					cout << "first null check" << endl;
 					return NULL;
 				}else {
 					if((current->student->first == f) && (current->student->last == l)){
+						cout << "test" << endl;
 						current->printNode();
+						cout << "test" << endl;
 						return current;
 					}else if(current->student->last == l && current->student->first != f){
-					if(current->student->first < f){
-						current = current->right;
-//						if(current->student->last == l && current->student->first == f){
-//							cout << "if equal -- " << current->student->first << " " << current->student->last << endl;
-//							current->printNode();
-//							return current;
-//						}
-					}else if(current->student->first > f){
-						current = current->left;
-						//cout << current->right->student->first<<endl;
-//						if(current != NULL && current->student->last == l && current->student->first == f){
-//							cout << "last if" << endl;
-//
-//							current->printNode();
-//							return current;
-//						}
-					}
+						if(current->student->first < f){
+							current = current->right;
+	//						if(current->student->last == l && current->student->first == f){
+	//							cout << "if equal -- " << current->student->first << " " << current->student->last << endl;
+	//							current->printNode();
+	//							return current;
+	//						}
+						}else if(current->student->first > f){
+							current = current->left;
+							//cout << current->right->student->first<<endl;
+	//						if(current != NULL && current->student->last == l && current->student->first == f){
+	//							cout << "last if" << endl;
+	//
+	//							current->printNode();
+	//							return current;
+	//						}
+						}
 		//				if(current->left != NULL){
 		//					current = current->left;
 		//				}else if(current->right != NULL){
@@ -140,7 +143,8 @@ bstNode *bst::find(string l, string f){
 			}
 		}
 	}
-	return NULL;
+	cout << current<< endl;
+	return current;
 }
 
 void bst::printTreeIO(){
@@ -293,7 +297,7 @@ bstNode *bst::removeOneKid(bstNode *tmp, bool leftFlag){
 	return tmp;
 }
 
-bstNode *bst::remove(string f, string l){
+bstNode *bst::remove(string l, string f){
 	/*
 	 * this method removes a node from the tree, and
 	 * returns that node. There are 3 cases when you remove a node: either the node being
@@ -305,22 +309,23 @@ bstNode *bst::remove(string f, string l){
 	 * replacement child, and then remove the node used as a replacement by calling either
 	 * removeNoKids or removeOneKid, depending on which is appropriate.
 	 */
-	cout << "getting here" << endl;
+	//cout << "getting here" << endl;
 	bstNode *current = find(l, f);
-	cout << "under find" << endl;
+	//cout << current<<endl;
+	//cout << "under find" << endl;
 	//first case - no children
 	if(current->left == NULL && current->right == NULL){
-		cout << "first case" << endl;
+		//cout << "first case" << endl;
 		return removeNoKids(current);
 	//second case -
 	}else if(current->left != NULL && current->right == NULL){
-		cout << "second case" << endl;
+		//cout << "second case" << endl;
 		return removeOneKid(current, true);
 	}else if(current->left == NULL && current->right != NULL){
 		return removeOneKid(current, false);
 	//third case - has two children
 	}else if(current->left != NULL && current->right != NULL){
-		cout << "third case" << endl;
+		//cout << "third case" << endl;
 		//find the rightmost
 		bstNode *temp = current;
 		while(temp->right != NULL){

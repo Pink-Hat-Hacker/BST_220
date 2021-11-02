@@ -26,6 +26,10 @@ int main() {
 	tree->tree->find("Bellatrix","Boris");
 	cout << endl;
 
+//	cout << "Arachnea" << endl;
+//	tree->tree->find("Adams","Arachnea");
+//	cout << endl;
+
 	cout << "Finding Grotesque: " << endl;
 	tree->tree->find("Grotesque","Griselda");
 	cout << endl;
