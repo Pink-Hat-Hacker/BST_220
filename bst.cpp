@@ -99,11 +99,11 @@ bstNode *bst::find(string l, string f){
 	bstNode *current = root;
 	//bstNode *temp = current;
 	if(current == NULL){
-		cout << "current is NULL" << endl;
+		//cout << "current is NULL" << endl;
 		return NULL;
 	}else{
 		while(current->student->last != l){
-			cout << "in top while loop" << endl;
+			//cout << "in top while loop" << endl;
 			if(current->student->last < l){
 				cout << "if current->last < l" << endl;
 				current = current->right;
@@ -113,22 +113,35 @@ bstNode *bst::find(string l, string f){
 			}else{
 				return NULL;
 			}
-			cout << "bottom while loop" << endl;
+			//cout << "bottom while loop" << endl;
 		}
 		if((current->student->first == f) && (current->student->last == l)){
-			cout << "if f and l found" << endl;
-			cout << current->student->first << " " << current->student->last << endl;
+			//cout << "if f and l found" << endl;
+			//cout << current->student->first << " " << current->student->last << endl;
+
+			current->printNode();
 			return current;
 		}else if(current->student->last == l && current->student->first != f){
-			cout << " == l but != f" << endl;
+			//cout << " == l but != f" << endl;
+			//cout << current->student->first << endl;
 			if(current->student->first < f){
+				//cout << "current->first < f" << endl;
 				current = current->right;
 				if(current->student->last == l && current->student->first == f){
+					//cout << "if equal -- " << current->student->first << " " << current->student->last << endl;
+
+					current->printNode();
 					return current;
 				}
-			}else if(current->student->first == f){
+			}else if(current->student->first > f){
+				//cout << "last elseIf" << endl;
+
 				current = current->left;
+				//cout << current->right->student->first<<endl;
 				if(current->student->last == l && current->student->first == f){
+					//cout << "last if" << endl;
+
+					current->printNode();
 					return current;
 				}
 			}
