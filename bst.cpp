@@ -384,4 +384,24 @@ void bst::setHeight(bstNode *n){
  * ########################################################
  */
 
+//need to find balance of tree initially and throughout
+
+int bst::findBalance(bstNode *temp){
+	if(temp->left != NULL && temp->right != NULL){
+		return((temp->left->height)-(temp->right->height));
+	}else if(temp->left == NULL && temp->right != NULL){
+		return(temp->right->height);
+	}else if(temp->left != NULL && temp->right == NULL){
+		return temp->left->height;
+	}
+	return 0;
+}
+
+//rotate left
+bstNode *bst::rLeft(bstNode *temp){
+
+}
+
+//rotate right
+
 
