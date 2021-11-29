@@ -11,138 +11,133 @@
 using namespace std;
 
 int main() {
+
+
 	//bst *tree = new bst("TestingBST.txt");
-	TreeInterface *tree = new TreeInterface("TestingBST.txt");
+	//TreeInterface *tree = new TreeInterface("TestingBST.txt");
 
-	cout << endl;
-	tree->tree->printTreePre();
-	tree->tree->printTreeIO();
-	tree->tree->printTreePost();
-	cout << "##############################################################"<<endl;
+	//cout << endl;
+//	tree->tree->printTreePre();
+//	tree->tree->printTreeIO();
+//	tree->tree->printTreePost();
+//	cout << "##############################################################"<<endl;
 
-/***** Part 2 Let's Find: ********/
-	cout <<endl<<endl<< "********* Testing Find ************" << endl;
-	cout << "Inserting  Bellatrix: " << endl;
-	tree->tree->find("Bellatrix","Boris");
-	cout << endl;
-
-//	cout << "Arachnea" << endl;
-//	tree->tree->find("Adams","Arachnea");
+///***** Part 2 Let's Find: ********/
+//	cout <<endl<<endl<< "********* Testing Find ************" << endl;
+//	cout << "Inserting  Bellatrix: " << endl;
+//	tree->tree->find("Bellatrix","Boris");
 //	cout << endl;
-
-	cout << "Finding Grotesque: " << endl;
-	tree->tree->find("Grotesque","Griselda");
-	cout << endl;
-
-	cout << "Finding Poltergeist: " << endl;
-	tree->tree->find("Poltergeist","Penelope");
-	cout << endl;
-
-	cout << "Finding Evil: " << endl;
-	tree->tree->find("Evil","Edward");
-	cout << endl;
-	cout << "##############################################################"<<endl;
-
-/***** Part 3 Let's Insert: ********/
-
-	cout <<endl<<endl<< "********* Testing Insert ************" << endl;
-	cout << "Inserting Vladimir Vladislov: " << endl;
-	tree->tree->insert("Vladislov","Vladimir", 323, "What song does Dracula hate most? You Are My Sunshine.");
-	cout << endl;
-	cout << endl << "***Printing IO ***" << endl;
-	tree->tree->printTreeIO();
-	//tree->tree->printTreePre();
-
-	cout << endl << endl<<"Inserting Nelly Nobody: " << endl;
-	tree->tree->insert("Nobody","Nelly", 761, "We all Albert Einstein was a genius... but his brother Frank was a monster!");
-	cout << endl;
-	cout << endl << "***Printing IO ***" << endl;
-	tree->tree->printTreeIO();
-
-	cout << endl << endl<<"Inserting Morty Mortician: " << endl;
-	tree->tree->insert("Mortician","Morty", 513, "Why did the Monster's grandma knit him a third sock?  Because she heard he grew another foot!");
-	cout << endl;
-	cout << endl << "***Printing IO ***" << endl;
-	tree->tree->printTreeIO();
-
-
-/******Part 4 now testing the removing part *******/
-
-
-	cout <<endl<<endl<< "********* Testing Removing ************" << endl;
-
-	/***** Removing student with no kids *******/
-	cout << "Removing No Children (Arachnea Adams)"<<endl;
-	tree->tree->remove("Adams","Arachnea");
-	tree->tree->printTreeIO();
-	cout << endl<<endl<<"************************************" << endl;
-
-
-	/***** Removing student with one kid *******/
-	cout << "Removing Node with One Kid (Fabian Fearful)"<<endl;
-	tree->tree->remove("Fearful","Fabian");
-	tree->tree->printTreeIO();
-	cout << endl<<endl<<"************************************" << endl;
-
-	/***** Removing student with two kids *******/
-	cout << "Removing Node with two kids (Jason Jinx)"<<endl;
-	tree->tree->remove("Jinx","Jason");
-	tree->tree->printTreeIO();
-	cout << endl<<endl<<"************************************" << endl;
-
-	/******Part 5 now testing the removing part *******/
-	cout << "Ready to Delete?"<< endl;
-	string ans;
-	cin >> ans;
-	tree->tree->clearTree();
-	delete tree;
-
-/*****And now for the big tree!!!  Part 7 *************/
-//	StudentTreeInfo *studtree = new StudentTreeInfo("StudentAnswers.txt");
 //
-	cout <<"************************************ HERE" << endl;
-	TreeInterface *joketree = new TreeInterface("Jokes2.txt");
-	joketree->Interface();
-	//cout << "after interface"<<endl;
-
-//	cout << "Testing Find" << cout << endl;
+//////	cout << "Arachnea" << endl;
+//////	tree->tree->find("Adams","Arachnea");
+//////	cout << endl;
+////
+//	cout << "Finding Grotesque: " << endl;
+//	tree->tree->find("Grotesque","Griselda");
+//	cout << endl;
 //
-//	cout << "Find: Emma Szympruch"<< endl;
-//	joketree->tree->find("Szympruch","Emma");
-//	cout << "Find: Zoe Valladares" << endl;
-//	joketree->tree->find("Valladares","Zoe");
-//	cout << "Find: Debra Yarrington" << endl;
-//	joketree->tree->find("Yarrington","Debra");
-//	cout << "Find: Penelope" << endl;
-//	joketree->tree->find("Poltergeist","Penelope");
+//	cout << "Finding Poltergeist: " << endl;
+//	tree->tree->find("Poltergeist","Penelope");
+//	cout << endl;
 //
-//	cout << "*************************************" << endl;
-//	cout << "Testing Remove:" << endl;
+//	cout << "Finding Evil: " << endl;
+//	tree->tree->find("Evil","Edward");
+//	cout << endl;
+//	cout << "##############################################################"<<endl;
 //
-//	cout << "Remove: Gary Grotesque" << endl;
-//	joketree->tree->remove("Grotesque","Gary");
-//	joketree->tree->printTreeIO();
+/////***** Part 3 Let's Insert: ********/
+////
+//	cout <<endl<<endl<< "********* Testing Insert ************" << endl;
+//	cout << "Inserting Vladimir Vladislov: " << endl;
+//	tree->tree->insert("Vladislov","Vladimir", 323, "What song does Dracula hate most? You Are My Sunshine.");
+//	cout << endl;
+//	cout << endl << "***Printing IO ***" << endl;
+//	tree->tree->printTreeIO();
+////	//tree->tree->printTreePre();
+////
+//	cout << endl << endl<<"Inserting Nelly Nobody: " << endl;
+//	tree->tree->insert("Nobody","Nelly", 761, "We all Albert Einstein was a genius... but his brother Frank was a monster!");
+//	cout << endl;
+//	cout << endl << "***Printing IO ***" << endl;
+//	tree->tree->printTreeIO();
+//
+//	cout << endl << endl<<"Inserting Morty Mortician: " << endl;
+//	tree->tree->insert("Mortician","Morty", 513, "Why did the Monster's grandma knit him a third sock?  Because she heard he grew another foot!");
+//	cout << endl;
+//	cout << endl << "***Printing IO ***" << endl;
+//	tree->tree->printTreeIO();
+////
+////
+/////******Part 4 now testing the removing part *******/
+////
+////
+//	cout <<endl<<endl<< "********* Testing Removing ************" << endl;
+//
+//	/***** Removing student with no kids *******/
+//	cout << "Removing No Children (Arachnea Adams)"<<endl;
+//	tree->tree->remove("Adams","Arachnea");
+//	tree->tree->printTreeIO();
 //	cout << endl<<endl<<"************************************" << endl;
-//	cout << "Find: Griselda" << endl;
-//	joketree->tree->remove("Grotesque","Griselda");
-//	joketree->tree->printTreeIO();
 //
+//
+//	/***** Removing student with one kid *******/
+//	cout << "Removing Node with One Kid (Fabian Fearful)"<<endl;
+//	tree->tree->remove("Fearful","Fabian");
+//	tree->tree->printTreeIO();
 //	cout << endl<<endl<<"************************************" << endl;
-//	cout << "*************************************" << endl;
 //
-//	cout << "Testing Insert:" << endl;
+//	/***** Removing student with two kids *******/
+//	cout << "Removing Node with two kids (Jason Jinx)"<<endl;
+//	tree->tree->remove("Jinx","Jason");
+//	tree->tree->printTreeIO();
+//	cout << endl<<endl<<"************************************" << endl;
 //
-//	cout << "Insert: Gary Grotesque"<< endl;
-//	joketree->tree->insert("Grotesque","Gary", 426, "Programming is like writing a book... except when you forget a semicolon on line 126 the whole thing makes no sense.");
-//	cout << "Find: Gary Grotesque" << endl;
-//	joketree->tree->find("Grotesque","Gary");
-//	cout << "Find: Griselda Grotesque" << endl;
-//	joketree->tree->find("Grotesque","Griselda");
+//	/******Part 5 now testing the removing part *******/
+//	cout << "Ready to Delete?"<< endl;
+//	string ans;
+//	cin >> ans;
+//	tree->tree->clearTree();
+//	delete tree;
 //
-//	cout << "*************************************" << endl;
-//	cout << "Finding Students" << endl;
-//	cout << "Find: Craig Barber" << endl;
-//	joketree->tree->find("Barber","Craig");
+//
+//
+//
+////	// AVL
+////
+	TreeInterface *treeTest = new TreeInterface("TestingBST.txt");
+/************ testing left rotations *****/
+	//treeTest = new TreeInterface("Testingleft.txt");
+//	cout << "************************************" << endl;
+//	treeTest->tree->clearTree();
+//
+//	delete treeTest;
+
+////
+/////***** testing the right-right rotations *****/
+//	cout << "********* Testing right ************" << endl;
+//	treeTest = new TreeInterface("TestRight.txt");
+//	cout << "************************************" << endl;
+//	treeTest->tree->clearTree();
+//
+//	delete treeTest;
+////
+/////***** testing the right-left rotations *****/
+////	cout << "********* Testing rightleft ************" << endl;
+////	studenttree = new TreeInterface("TestRightLeft.txt");
+////	cout << "************************************" << endl;
+////	studenttree->tree->clearTree();
+////
+////	delete studenttree;
+////
+/////***** testing the left-right rotations *****/
+////	cout << "********* Testing leftright ************" << endl;
+////	studenttree = new TreeInterface("TestLeftRight.txt");
+////	cout << "************************************" << endl;
+
+//	cout <<"************** BST Jokes2.txt ***************" << endl;
+//	TreeInterface *joketree = new TreeInterface("Jokes2.txt");
+//	joketree->Interface();
+
 
 	return 0;
 }

@@ -372,6 +372,20 @@ void bst::setHeight(bstNode *n){
 		}else if((n->right == NULL) && (n->left == NULL)){
 			n->height = 1;
 		}
+
+		//AVL
+
+		if(getBalance(n) >= 2 && getBalance(n->left) <= 1){
+			rotateRight(n);
+		}else if(getBalance(n) >= 2 && getBalance(n->left) <= -1){
+			rotateLeft(n->left);
+			rotateRight(n);
+		}else if(getBalance(n) <= -2 && getBalance(n->right) <= -1){
+			rotateLeft(n);
+		}else if(getBalance(n) <= -2 && getBalance(n->right) >= 1){
+			rotateRight(n->right);
+			rotateLeft(n);
+		}
 	}
 }
 
@@ -386,7 +400,7 @@ void bst::setHeight(bstNode *n){
 
 //need to find balance of tree initially and throughout
 
-int bst::findBalance(bstNode *temp){
+int bst::getBalance(bstNode *temp){
 	if(temp->left != NULL && temp->right != NULL){
 		return((temp->left->height)-(temp->right->height));
 	}else if(temp->left == NULL && temp->right != NULL){
@@ -397,11 +411,113 @@ int bst::findBalance(bstNode *temp){
 	return 0;
 }
 
-//rotate left
-bstNode *bst::rLeft(bstNode *temp){
+//fix the height of balanced nodes
+void bst::fixHeight(bstNode *node){
+	if(node->left != NULL && node->right != NULL){
+		if (node->left->height > node->right->height) {
+				node->height = node->left->height + 1;
+		}else {
+				node->height = node->right->height + 1;
+		}
+	}else if (node->left==NULL && node->right!=NULL) {
+		node->height = node->right->height + 1;
+	}else if(node->left!=NULL && node->right==NULL){
+		node->height = node->left->height+1;
+	}else{
+		node->height = 1;
+	}
+}
 
+//rotate left
+bstNode *bst::rotateLeft(bstNode *temp){
+	//initial
+	bstNode *temp2 = temp->right;
+	bstNode *temp3 = temp->left;
+	bstNode *tempPar = temp->parent;
+
+	//set to null
+	temp2->left = NULL;
+	temp2->left = temp;
+	temp->right = NULL;
+	temp->right = temp3;
+
+	//rootcase
+	if(temp == root){
+		root = temp2;
+		temp2->parent = NULL;
+		temp->parent = NULL;
+		temp->parent = temp2;
+
+		if(temp3 != NULL){
+			temp3->parent = temp;
+		}
+	}else{
+		temp2->parent = temp->parent;
+
+		if(tempPar->right == temp){
+			tempPar->right = temp2;
+		}else{
+			tempPar->left = temp2;
+		}
+
+		temp->parent = NULL;
+		temp->parent = temp2;
+
+		if(temp3 != NULL){
+			temp3->parent = temp;
+		}
+	}
+
+
+	fixHeight(temp);
+	fixHeight(temp2);
+
+	return temp2;
 }
 
 //rotate right
+bstNode *bst::rotateRight(bstNode *temp){
+	//initial
+	bstNode *temp2 = temp->left;
+	bstNode *temp3 = temp->right;
+	bstNode *tempPar = temp->parent;
 
+	//set to null
+	temp2->right = NULL;
+	temp2->right = temp;
+	temp->left = NULL;
+	temp->left = temp3;
+
+	//rootcase
+	if(temp == root){
+		root = temp2;
+		temp2->parent = NULL;
+		temp->parent = NULL;
+		temp->parent = temp2;
+
+		if(temp3 != NULL){
+			temp3->parent = temp;
+		}
+	}else{
+		temp2->parent = temp->parent;
+
+		if(tempPar->right == temp){
+			tempPar->right = temp2;
+		}else{
+			tempPar->left = temp2;
+		}
+
+		temp->parent = NULL;
+		temp->parent = temp2;
+
+		if(temp3 != NULL){
+			temp3->parent = temp;
+		}
+	}
+
+	fixHeight(temp);
+	fixHeight(temp2);
+
+	return temp2;
+}
 

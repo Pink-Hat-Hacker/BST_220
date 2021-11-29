@@ -33,9 +33,10 @@ public:
 	void setHeight(bstNode *n);
 
 	/******************New for AVL ***************************/
-	//int getBalance(bstNode *tmp);
-	//TNode *rotateRight(TNode *tmp);
-	//TNode *rotateLeft(TNode *tmp);
+	int getBalance(bstNode *tmp);
+	void fixHeight(bstNode *node);
+	bstNode *rotateRight(bstNode *tmp);
+	bstNode *rotateLeft(bstNode *tmp);
 };
 
 
